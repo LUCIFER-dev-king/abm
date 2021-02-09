@@ -1,4 +1,6 @@
 import 'package:abm/Authentication/SignUp.dart';
+import 'package:abm/Screens/HomePage.dart';
+import 'package:abm/Terms%20and%20Conditions/TC.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -38,40 +40,47 @@ class _SignInState extends State<SignIn> {
                       height: 30.0,
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: TextFormField(
-                        validator: (input) {
-                          if (input.isEmpty) {
-                            return "Provide an email";
-                          }
-                        },
-                        decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            )),
-                        onSaved: (input) => _email = input,
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(top: 20.0),
+                            child: TextFormField(
+                              validator: (input) {
+                                if (input.isEmpty) {
+                                  return "Provide an email";
+                                }
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Email',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  )),
+                              onSaved: (input) => _email = input,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: 20.0),
+                            child: TextFormField(
+                              validator: (input) {
+                                if (input.length < 6) {
+                                  return "6 character is must";
+                                }
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Password',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  )),
+                              onSaved: (input) => _pass = input,
+                              obscureText: true,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                        ],
                       ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: TextFormField(
-                        validator: (input) {
-                          if (input.length < 6) {
-                            return "6 character is must";
-                          }
-                        },
-                        decoration: InputDecoration(
-                            labelText: 'Password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            )),
-                        onSaved: (input) => _pass = input,
-                        obscureText: true,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30.0,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -99,8 +108,9 @@ class _SignInState extends State<SignIn> {
                               textAlign: TextAlign.center,
                             ),
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => SignUp()));
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
                             },
                           ),
                         ),
@@ -110,7 +120,6 @@ class _SignInState extends State<SignIn> {
                       height: 30.0,
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 20.0),
                       child: GestureDetector(
                         child: Text(
                           "Terms and Conditions",
@@ -119,7 +128,10 @@ class _SignInState extends State<SignIn> {
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => TC()));
+                        },
                       ),
                     )
                   ],
@@ -137,7 +149,11 @@ class _SignInState extends State<SignIn> {
             elevation: 7.0,
             child: MaterialButton(
                 minWidth: double.infinity,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ));
+                },
                 child: Text('SIGN IN',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
